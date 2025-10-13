@@ -70,7 +70,6 @@ El objetivo es implementar un **módulo de notificaciones** consumiendo los serv
 
 2. Instalar dependencias:
     ```bash
-    bash
     npm install
 
 3. Ejecutar en modo desarrollo:
