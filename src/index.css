@@ -1,3 +1,39 @@
+/* Removed Tailwind directives. If using Tailwind, ensure your build tool is configured correctly. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --aduanas-blue: #003366;
+    --aduanas-light-blue: #004080;
+    --aduanas-gray: #E0E0E0;
+  }
+
+  body {
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  
+  .input-field {
+    @apply w-full px-5 py-3 border border-gray-300 rounded-lg transition-all duration-300 bg-white text-gray-900;
+  }
+  .input-field:focus {
+    @apply outline-none ring-2 ring-aduanasBlue ring-offset-0 border-aduanasBlue;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+
+
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,6 +49,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+* {
+  user-select: none;       
+  caret-color: transparent; 
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+input,
+textarea {
+  user-select: text;        /* permite seleccionar texto */
+  caret-color: auto;        /* muestra el cursor normal */
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,8 +78,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -42,17 +94,84 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+input:focus{
+  border-color: #646cff;
 }
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes shrink-center {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-in;
+}
+
+.animate-shrink-center {
+  animation: shrink-center 0.2s ease-in;
+}
+
+/* Remove outline from toggle button on hover */
+.toggle-button:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+
+@font-face {
+  font-family: 'CaviarDreams';
+  src: url('./assets/fonts/CaviarDreams.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CaviarDreams';
+  src: url('./assets/fonts/CaviarDreams_Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
