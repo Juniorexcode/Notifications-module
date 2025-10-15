@@ -1,0 +1,15 @@
+[
+  { "id": 1, "nombre": "Recaudación", "area": "Operaciones", "gerencia": "Gerencia Financiera", "estatus": "Habilitado" },
+  { "id": 2, "nombre": "Fiscalización", "area": "Operaciones", "gerencia": "Gerencia de Fiscalización", "estatus": "Habilitado" },
+  { "id": 3, "nombre": "Tecnología", "area": "Soporte", "gerencia": "Gerencia de TICs", "estatus": "Deshabilitado" },
+  { "id": 4, "nombre": "Recursos Humanos", "area": "Administrativa", "gerencia": "Gerencia Administrativa", "estatus": "Habilitado" },
+  { "id": 5, "nombre": "Jurídico", "area": "Soporte", "gerencia": "Gerencia Legal", "estatus": "Habilitado" },
+  { "id": 6, "nombre": "Recaudación", "area": "Soporte", "gerencia": "Gerencia Legal", "estatus": "Habilitado" },
+  { "id": 7, "nombre": "Fiscalización", "area": "Soporte", "gerencia": "Gerencia Legal", "estatus": "Habilitado" },
+  { "id": 8, "nombre": "Tecnología", "area": "Soporte", "gerencia": "Gerencia Legal", "estatus": "Habilitado" },
+  { "id": 9, "nombre": "Jurídico", "area": "Soporte", "gerencia": "Gerencia Legal", "estatus": "Habilitado" },
+  { "id": 10, "nombre": "Recaudación", "area": "Operaciones", "gerencia": "Gerencia Financiera", "estatus": "Habilitado" }
+  
+  
+]
+
