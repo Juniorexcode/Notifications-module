@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination.jsx";
 import AnimatedTableBody from "./AnimatedTableBody.jsx";
 
-function DepartamentosTable({
+function PlantillasTable({
   onEdit,
   onDelete,
   data,
@@ -36,18 +36,18 @@ function DepartamentosTable({
             <colgroup>
               <col style={{ width: "8%" }} />
               <col style={{ width: "22%" }} />
-              <col style={{ width: "18%" }} />
               <col style={{ width: "22%" }} />
-              <col style={{ width: "15%" }} />
-              <col style={{ width: "15%" }} />
+              <col style={{ width: "25%" }} />
+              <col style={{ width: "12%" }} />
+              <col style={{ width: "22%" }} />
             </colgroup>
             <thead className="text-white">
               <tr>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">ID</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Nombre</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Área</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Gerencia</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">Estatus</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">ID</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">DEPARTAMENTO</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">MODULO</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">PLANTILLA DE MENSAJE</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">ESTATUS</th>
                 <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">Acciones</th>
               </tr>
             </thead>
@@ -64,8 +64,8 @@ function DepartamentosTable({
           onEdit={onEdit}
           onDelete={onDelete}
           numColumns={6}
-          colgroupWidths={["8%", "22%", "18%", "22%", "15%", "15%"]}
-          isModulos={false}
+          colgroupWidths={["8%", "22%", "22%", "25%", "12%", "22%"]}
+          isPlantillas={true}
         />
       </div>
 
@@ -86,4 +86,4 @@ function DepartamentosTable({
   );
 }
 
-export default DepartamentosTable;
+export default PlantillasTable;

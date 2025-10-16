@@ -27,7 +27,7 @@ function Pagination({ currentPage, totalPages, onPageChange, onPageSizeChange, p
   };
 
   return (
-    <div className="px-2 sm:px-3 lg:px-3 xl:px-4 2xl:px-6 pt-0.5 pr-2 pb-0 pl-2 sm:pt-1 sm:pr-3 sm:pb-0 sm:pl-3 lg:pt-1 lg:pr-3 lg:pb-0 lg:pl-3 xl:pt-2 xl:pr-4 xl:pb-0 xl:pl-4 2xl:pt-3 2xl:pr-6 2xl:pb-0.5 2xl:pl-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
+    <div className="px-1 sm:px-2 md:px-3 lg:px-3 xl:px-4 2xl:px-6 pt-0.5 pr-1 pb-0 pl-1 sm:pt-1 sm:pr-2 sm:pb-0 sm:pl-2 md:pt-1 md:pr-3 md:pb-0 md:pl-3 lg:pt-1 lg:pr-3 lg:pb-0 lg:pl-3 xl:pt-2 xl:pr-4 xl:pb-0 xl:pl-4 2xl:pt-3 2xl:pr-6 2xl:pb-0.5 2xl:pl-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-2 md:gap-4 overflow-x-auto">
       <div className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-text-light dark:text-text-dark">
         <span className="whitespace-nowrap">Registros por páginas:</span>
         <div className="flex items-center">

@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import TableBody from "./TableBody";
 
-function AnimatedTableBody({ data, currentPage, direction, onEdit, onDelete }) {
+function AnimatedTableBody({ data, currentPage, direction, onEdit, onDelete, numColumns, colgroupWidths, isModulos = false, isPlantillas = false }) {
   const variants = {
     enter: (dir) => ({ x: dir > 0 ? 50 : -50, opacity: 0 }),
     center: { x: 0, opacity: 1 },
@@ -21,7 +21,7 @@ function AnimatedTableBody({ data, currentPage, direction, onEdit, onDelete }) {
         exit="exit"
         transition={{ duration: 0.15, ease: "easeInOut" }}
       >
-        <TableBody data={data} onEdit={onEdit} onDelete={onDelete} />
+        <TableBody data={data} onEdit={onEdit} onDelete={onDelete} numColumns={numColumns} colgroupWidths={colgroupWidths} isModulos={isModulos} isPlantillas={isPlantillas} />
       </motion.div>
     </AnimatePresence>
   );

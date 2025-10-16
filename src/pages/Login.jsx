@@ -49,7 +49,7 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-no-repeat bg-cover bg-black/50 bg-blend-multiply p-4 from-aduanasBlue to-aduanasLightBlue p-4"style={{ backgroundImage: `url(${bgImage})`, backgroundPosition: "top" }}>
-      <div className="bg-white rounded-2xl shadow-3xl flex flex-col md:flex-row max-w-4xl w-full overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-3xl flex flex-col md:flex-row max-w-5xl xl:max-w-6xl w-full overflow-hidden">
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center">
           <img
             alt="Logo Aduanas"
