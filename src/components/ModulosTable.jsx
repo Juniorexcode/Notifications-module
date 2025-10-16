@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination.jsx";
 import AnimatedTableBody from "./AnimatedTableBody.jsx";
 
-function DepartamentosTable({
+function ModulosTable({
   onEdit,
   onDelete,
   data,
@@ -35,18 +35,16 @@ function DepartamentosTable({
           <table className="w-full text-left min-w-[600px] table-fixed">
             <colgroup>
               <col style={{ width: "8%" }} />
-              <col style={{ width: "22%" }} />
-              <col style={{ width: "18%" }} />
-              <col style={{ width: "22%" }} />
-              <col style={{ width: "15%" }} />
+              <col style={{ width: "30%" }} />
+              <col style={{ width: "30%" }} />
+              <col style={{ width: "17%" }} />
               <col style={{ width: "15%" }} />
             </colgroup>
             <thead className="text-white">
               <tr>
                 <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">ID</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Nombre</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Área</th>
-                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Gerencia</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Nombre Módulo</th>
+                <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold">Sistema</th>
                 <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">Estatus</th>
                 <th className="p-1 sm:p-2 text-xs sm:text-sm font-semibold text-center">Acciones</th>
               </tr>
@@ -63,9 +61,9 @@ function DepartamentosTable({
           direction={direction}
           onEdit={onEdit}
           onDelete={onDelete}
-          numColumns={6}
-          colgroupWidths={["8%", "22%", "18%", "22%", "15%", "15%"]}
-          isModulos={false}
+          numColumns={5}
+          colgroupWidths={["8%", "30%", "30%", "17%", "15%"]}
+          isModulos={true}
         />
       </div>
 
@@ -86,4 +84,4 @@ function DepartamentosTable({
   );
 }
 
-export default DepartamentosTable;
+export default ModulosTable;

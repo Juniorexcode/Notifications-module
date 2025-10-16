@@ -1,4 +1,4 @@
-function TableRow({ row, index, onEdit, onDelete }) {
+function ModulosTableRow({ row, index, onEdit, onDelete }) {
   return (
     <tr
       className={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 ${
@@ -7,8 +7,7 @@ function TableRow({ row, index, onEdit, onDelete }) {
     >
       <td className="p-1 sm:p-2 text-xs sm:text-sm pl-1 sm:pl-5">{row.id}</td>
       <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.nombre}</td>
-      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.sistema || row.area}</td>
-      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.gerencia || row.sistema}</td>
+      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.sistema}</td>
       <td className="p-1 sm:p-2 text-center">
         <span
           className={`px-2 py-1 text-xs font-medium rounded-full ${
@@ -40,4 +39,4 @@ function TableRow({ row, index, onEdit, onDelete }) {
   );
 }
 
-export default TableRow;
+export default ModulosTableRow;

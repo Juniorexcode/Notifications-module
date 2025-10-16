@@ -1,17 +1,17 @@
-function TableRow({ row, index, onEdit, onDelete }) {
+function PlantillasTableRow({ row, index, onEdit, onDelete }) {
   return (
     <tr
       className={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 ${
         index % 2 === 1 ? "bg-gray-50 dark:bg-black/20" : ""
       }`}
     >
-      <td className="p-1 sm:p-2 text-xs sm:text-sm pl-1 sm:pl-5">{row.id}</td>
-      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.nombre}</td>
-      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.sistema || row.area}</td>
-      <td className="p-1 sm:p-2 text-xs sm:text-sm">{row.gerencia || row.sistema}</td>
-      <td className="p-1 sm:p-2 text-center">
+      <td className="p-1 sm:p-4 text-xs sm:text-sm">{row.id}</td>
+      <td className="p-1 sm:p-4 text-xs sm:text-sm">{row.departamento}</td>
+      <td className="p-1 sm:p-4 text-xs sm:text-sm">{row.modulo}</td>
+      <td className="p-1 sm:p-4 text-xs sm:text-sm max-w-xs truncate">{row.plantillaMensaje}</td>
+      <td className="p-1 sm:p-4 text-center">
         <span
-          className={`px-2 py-1 text-xs font-medium rounded-full ${
+          className={`px-2 sm:px-3 py-1 text-xs font-medium rounded-full ${
             row.estatus === "Habilitado"
               ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
               : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
@@ -20,8 +20,8 @@ function TableRow({ row, index, onEdit, onDelete }) {
           {row.estatus}
         </span>
       </td>
-      <td className="p-1 sm:p-2 text-center">
-        <div className="flex justify-center items-center space-x-1 sm:space-x-2">
+      <td className="p-1 sm:p-4 text-center">
+        <div className="flex justify-center items-center space-x-3 sm:space-x-4">
           <button
             className="text-primary hover:text-blue-700 dark:hover:text-blue-400 p-1 sm:p-2"
             onClick={() => onEdit(row)}
@@ -40,4 +40,4 @@ function TableRow({ row, index, onEdit, onDelete }) {
   );
 }
 
-export default TableRow;
+export default PlantillasTableRow;

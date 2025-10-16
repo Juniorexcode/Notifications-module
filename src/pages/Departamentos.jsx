@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
+import Sidebar from '../components/Sidebar';
 import DepartamentosHeader from "../components/DepartamentosHeader";
 import SearchBar from "../components/SearchBar";
 import DepartamentosTable from "../components/DepartamentosTable";
@@ -9,14 +10,21 @@ function Departamentos() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingData, setEditingData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState(null);
+  const [statusFilter, setStatusFilter] = useState(null); // "Habilitado" | "Deshabilitado" | null
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [tableData, setTableData] = useState(departamentosData);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const tableWrapperRef = useRef(null);
 
-  // ✅ Aplica el comportamiento de scroll dinámico
+  // Utilidad: normaliza texto para comparar
+  const norm = (v) =>
+    String(v ?? "")
+      .trim()
+      .toLowerCase();
+
+  // ✅ Comportamiento de scroll dinámico (solo scroll interno en el contenedor)
   useEffect(() => {
     const el = tableWrapperRef.current;
     if (!el) return;
@@ -32,28 +40,50 @@ function Departamentos() {
     return () => window.removeEventListener("resize", checkScroll);
   }, [tableData, currentPage, pageSize]);
 
-  // 🔍 Filtrado y búsqueda optimizados
+  // 🔍 Filtrado y búsqueda robustos (normaliza estatus y campos)
   const filteredData = useMemo(() => {
-    const term = searchTerm.toLowerCase();
+    const term = norm(searchTerm);
+    const status = statusFilter ? norm(statusFilter) : null;
+
     return tableData.filter((item) => {
-      if (statusFilter && item.estatus !== statusFilter) return false;
+      const estatus = norm(item.estatus);
+      const nombre = norm(item.nombre);
+      const area = norm(item.area);
+      const gerencia = norm(item.gerencia);
+      const idStr = String(item.id ?? "").trim();
+
+      // Filtro por status tag (exacto tras normalización)
+      if (status && estatus !== status) return false;
+
+      // Búsqueda libre
       if (term) {
-        if (term === "habilitado") return item.estatus === "Habilitado";
-        if (term === "deshabilitado") return item.estatus === "Deshabilitado";
-        return (
-          item.nombre.toLowerCase().includes(term) ||
-          item.area.toLowerCase().includes(term) ||
-          item.gerencia.toLowerCase().includes(term) ||
-          item.estatus.toLowerCase().includes(term) ||
-          item.id.toString().includes(term)
-        );
+        if (term === "habilitado" || term === "deshabilitado") {
+          if (estatus !== term) return false;
+        } else {
+          const hits =
+            nombre.includes(term) ||
+            area.includes(term) ||
+            gerencia.includes(term) ||
+            estatus.includes(term) ||
+            idStr.includes(term);
+          if (!hits) return false;
+        }
       }
+
       return true;
     });
   }, [tableData, searchTerm, statusFilter]);
 
-  // 📄 Paginación
-  const totalPages = Math.ceil(filteredData.length / pageSize);
+  // 📄 Paginación segura
+  const totalPages = Math.max(1, Math.ceil(filteredData.length / pageSize));
+
+  // Si currentPage queda fuera de rango, corrige (evita tabla en blanco)
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
     return filteredData.slice(startIndex, startIndex + pageSize);
@@ -104,11 +134,15 @@ function Departamentos() {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    setCurrentPage(1);
+    setCurrentPage(1); // reset elegante al buscar
   };
 
   const handleStatusFilter = (status) => {
+    // Toggle: si clicas el mismo, limpia; si no, establece
     setStatusFilter(statusFilter === status ? null : status);
+
+    // Reset elegante al cambiar de tag
+    setSearchTerm("");
     setCurrentPage(1);
   };
 
@@ -121,31 +155,45 @@ function Departamentos() {
     setCurrentPage(1);
   };
 
+  const handleToggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <>
-      {/* Header principal */}
-      <DepartamentosHeader onAddClick={handleAddClick} />
+    <div className="flex bg-background-light dark:bg-background-dark overflow-hidden">
+      <Sidebar isOpen={sidebarOpen} onToggle={handleToggleSidebar} />
+      <main className={`flex-1 p-4 sm:p-6 md:p-10 overflow-hidden transition-all duration-300 ease-in-out ${sidebarOpen ? 'md:ml-64 ml-0' : 'ml-0'}`}>
+        <div className="max-w-7xl xl:max-w-full xl:px-8 2xl:px-16 mx-auto h-full flex flex-col">
+          {/* Header principal */}
+          <DepartamentosHeader onAddClick={handleAddClick} />
 
-      {/* Barra de búsqueda + tags debajo */}
-      <SearchBar
-        onSearch={handleSearch}
-        statusFilter={statusFilter}
-        onStatusFilter={handleStatusFilter}
-      />
+          {/* Barra de búsqueda + tags debajo */}
+          <SearchBar
+            onSearch={handleSearch}
+            statusFilter={statusFilter}
+            onStatusFilter={handleStatusFilter}
+            searchTerm={searchTerm}
+            isOpen={sidebarOpen}
+          />
 
-      {/* Tabla envuelta para el control de scroll dinámico */}
-      <div ref={tableWrapperRef} className="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg">
-        <DepartamentosTable
-          onEdit={handleEditClick}
-          onDelete={handleDelete}
-          data={paginatedData}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
-          pageSize={pageSize}
-        />
-      </div>
+          {/* Tabla envuelta para el control de scroll dinámico */}
+          <div
+            ref={tableWrapperRef}
+            className="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg flex-1 overflow-hidden"
+          >
+            <DepartamentosTable
+              onEdit={handleEditClick}
+              onDelete={handleDelete}
+              data={paginatedData}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+              pageSize={pageSize}
+            />
+          </div>
+        </div>
+      </main>
 
       {/* Modal agregar/editar */}
       <AddRegistro
@@ -159,7 +207,7 @@ function Departamentos() {
         initialData={editingData}
         onSave={handleSave}
       />
-    </>
+    </div>
   );
 }
 
