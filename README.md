@@ -16,8 +16,8 @@ El objetivo es implementar un **módulo de notificaciones** consumiendo los serv
 
 ## 🔑 Credenciales de acceso a la API
 - **URL Base:** [https://oyfvcibadx.sharedwithexpose.com/](https://oyfvcibadx.sharedwithexpose.com/)  
-- **Usuario:** `admin`  
-- **Contraseña:** `password123`  
+- **Usuario:** Solicitar 
+- **Contraseña:** Solicitar 
 
 > En el mismo URL se encuentra la documentación de los servicios disponibles.
 
